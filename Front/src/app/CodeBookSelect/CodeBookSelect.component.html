@@ -1,0 +1,20 @@
+<div class="container py-20">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="chooseCodeBook" (ngSubmit)="onSubmit()">
+        <select formControlName="name" (change)="parentChange($event)" class="form-control">
+          <option value="">Choose codebook</option>
+          <option *ngFor="let codeBook of types$ | async" value="{{codeBook.id}}">{{codeBook.codeBookName}}</option>
+        </select>
+      </form>
+    </div>
+
+    <div class="col-md-12 py-20">
+        <select [innerHTML]="htmlStr | Safe" class="form-control" (change)="childChange($event)">
+        </select>
+    </div>
+
+    <div class="col-md-12" [innerHTML]="htmlResult | Safe">
+      
+    </div>
+</div>    

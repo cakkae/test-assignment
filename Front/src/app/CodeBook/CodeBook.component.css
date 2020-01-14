@@ -1,0 +1,56 @@
+.center {
+  text-align: center;
+}
+.addParentContainer {
+  padding: 20px;
+}
+.codeBookList {
+  margin-top: 20px;
+}
+.codebook {
+    list-style-type: none;
+    width: 15em;
+    margin-top: 10px;
+  }
+  .codebook li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  .codebook li:hover {
+    color: #343a40;
+    font-style: italic;
+    left: .1em;
+  }
+  .codebook li.selected {
+    color: #343a40;
+    font-weight: bold;
+  }
+  .codebook li.selected:hover {
+    color:black;
+  }
+  .codebook .badge {
+    display: inline-block;
+    color: white;
+    background-color:#405061;
+    border-radius: 4px 0px 0px 4px;
+    padding: 10px;
+  }
+
+.addChildContainer {
+  padding: 20px;
+  background-color: #343a40;
+  color: white;
+  font-weight: bold;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.addChildContainer .addChildText {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 40px;
+}

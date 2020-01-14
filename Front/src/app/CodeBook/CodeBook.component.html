@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 addParentContainer">
+      <h2 class="center">If you want to add parent node just type name and press ADD NEW</h2>
+      <form [formGroup]="addCodeBookForm" (ngSubmit)="onFormSubmit()">
+        <div class="form-group">
+          <input type="text" placeholder="Name" class="form-control" name="codeBookName" formControlName="codeBookName" #codeBookName />
+        </div>
+        <button [disabled]="!addCodeBookForm.valid" type="submit" class="btn btn-block btn-success">Add Codebook</button>
+      </form>
+    </div>
+    <div class="col-md-6 codeBookList">
+      <ng-template #nodeTemplateRef let-codeBook>
+        <li [class.selected]="codeBook.id === selectedCodeBook?.id">
+          <span class="badge" (click)="onSelect(codeBook)">{{codeBook.id}}</span> {{codeBook.codeBook.codeBookName}}
+          <ul class="codebook" *ngIf="codeBook.children?.length && codeBook.isOpen">
+            <ng-template ngFor [ngForOf]="codeBook.children" [ngForTemplate]="nodeTemplateRef">
+            </ng-template>
+          </ul>
+        </li>
+      </ng-template>
+
+      <ul class="codebook" *ngIf="codeBooks.length">
+        <ng-template *ngFor="let codeBook of codeBooks" [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ $implicit: codeBook }">
+        </ng-template>
+      </ul>
+    </div>
+    <div class="col-md-6 addChildContainer">
+      <div *ngIf="!selectedCodeBook">
+        <p class="addChildText">If you want to add Child just press on node where you want to add child</p>
+      </div>
+      <div *ngIf="selectedCodeBook">
+        <form [formGroup]="addCodeBookForm" (ngSubmit)="onFormSubmit(true)">
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" placeholder="name" class="form-control" name="codeBookName" formControlName="codeBookName" #codeBookName />
+          </div>
+          <button [disabled]="!addCodeBookForm.valid" type="submit" class="btn btn-block btn-success">Add Codebook</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
